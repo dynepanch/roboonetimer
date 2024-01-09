@@ -1,0 +1,56 @@
+.changecolorbutton{
+    display:inline-block
+    width: 150px;
+    background: #c8eac3;
+    color: #000;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.changecolorbutton:active{
+    background: #1a720d;
+    color: #FFF;
+}
+div{
+    text-align:center;
+}
+    .radiobotan{
+        display: flex;
+    }
+    .radiobotan label{
+        display: block;
+        width: 200px;
+        background: #c8eac3;
+        color: #000;
+        padding: 10px;
+        margin: auto;
+        box-sizing: border-box;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+    .radiobotan input:checked+label{
+        background: #1a720d;
+        color: #FFF;
+    }
+    .radiobotan input{
+        display: none;
+    }
+button.horizontal {
+    display: block;
+    background: #c8eac3;
+    color: #000;
+    padding-left: 5em;
+    padding-right: 5em;
+    height: 5em;
+    <strong>vertical-align:middle;</strong>
+  }
+ button.click{
+    background: #1a720d;
+    color: #FFF;
+}

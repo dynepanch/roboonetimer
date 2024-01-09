@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!SPDX-FileCopyrightText: 2023 Ken Inaba rightman20020920@yahoo.co,jp>
+<!#-Licence-Identifire: BSD-3-Clause>
+
+<html>
+<head>
+	<link href="css/Main.css" rel="stylesheet" />
+	<title>Robo-one timer</title>
+</head>
+
+<body bgcolor="#FFFFF">
+
+	<center>
+	
+	<img src="Icon.png" width="200">
+	
+	<div class="radiobotan">
+		<input type="radio" checked id="11" name="altimet" onclick="altimetari()"><label for="11">アルティメット有</label>
+		<input type="radio" id="12" name="altimet" onclick="altimetnasi()"><label for="12">アルティメット無し</label></>
+	</div>
+	<br>
+	<font size = "5"><hi>残り時間</hi></font>
+	<br>
+
+	<font size = "10"><p id="Timer"></p></font>
+
+	<div>
+		<button href="#" class="changecolorbutton" onclick="change3min()">3min</button>
+		<button href="#" class="changecolorbutton" onclick="change2min()">2min</button>
+	</div>
+	<br>
+	
+		<button class="horizontal" id="1" type="button" onclick="start_change()">
+				<font size="5">
+				<p id="start" ></p>
+				</font>
+		</button>
+
+	</font>
+	<br>
+	
+	<button type="button" onclick="time_1mplus()">
+		<font size="5">
+		+1m
+		</font>
+	</button>
+	<button type="button" onclick="time_1splus()">
+		<font size="5">
+		+1s
+		</font>
+	</button>
+	<button type="button" onclick="time_1sminus()">
+		<font size="5">
+		-1s
+		</font>
+	</button>
+	<button type="button" onclick="time_1mminus()">
+		<font size="5">
+		-1m
+		</font>
+	</button>
+	<br>
+	<audio  autoplay id="audio_1" controls>
+		<source src = "music/timer_music.wav" type = "audio/mp3">
+	</audio>
+	<br>
+	<audio  autoplay id="audio_2" controls>
+		<source src = "music/alutimet.wav" type = "audio/mp3">
+	</audio>
+
+	<script>
+	var now100ms=18000;
+	var count=0;
+	var nowMin;
+	var nowSec;
+	var showtime_sec;
+	var showtime_ms;
+	var start=0;
+	var altimet="audio_2";
+	var startmsgs="start";
+	document.getElementById("start").innerHTML = startmsgs;
+	function showTimer() {
+		changeBoxColor();
+		if(start==1){
+			count--;
+			now100ms--;
+		}else{
+			document.getElementById("audio_1").pause();
+			document.getElementById("audio_2").pause();
+		}
+		if(now100ms>=0){
+			if(nowSec<10){
+				showtime_sec="0"+nowSec;
+			}else{
+				showtime_sec=nowSec;
+			}
+			if(count<10){
+				showtime_ms="0"+count;
+			}else{
+				showtime_ms=count;
+			}
+			if(count<=0 && start==1){
+				count=100;
+			}
+			nowSec=Math.floor(now100ms/100)-nowMin*60;
+			nowMin=Math.floor(now100ms/6000);
+		}else{
+			showtime_ms="00";
+		}
+		msg = + nowMin + ":" + showtime_sec + ":" + showtime_ms;
+		document.getElementById("Timer").innerHTML = msg;	
+		  
+	}
+	setInterval('showTimer()',10);
+	function start_change(){
+		if(start==0){
+			start=1;
+			startmsgs="stop";
+			document.getElementById(altimet).currentTime = 182-(2+now100ms/100);
+			document.getElementById(altimet).play();
+		}else{
+			start=0;
+			startmsgs="start";
+			document.getElementById(altimet).pause();
+		}
+		document.getElementById("start").innerHTML = startmsgs;
+	}
+	function change2min(){
+		if(start==0){
+			now100ms=12000;		
+			count=0;
+			document.getElementById("audio_1").pause();
+			document.getElementById("audio_2").pause();
+			document.getElementById("audio_1").currentTime = 60;
+			document.getElementById("audio_2").currentTime = 60;
+		}
+	}
+	function change3min(){
+		if(start==0){
+			now100ms=18000;
+			count=0;
+			document.getElementById("audio_1").pause();
+			document.getElementById("audio_2").pause();
+			document.getElementById("audio_1").currentTime = 0;
+			document.getElementById("audio_2").currentTime = 0;
+		}
+	}
+	function altimetari(){
+		altimet="audio_2";
+	}
+	function altimetnasi(){
+		altimet="audio_1";
+	}
+	function changeBoxColor() {
+		if(now100ms>3000){
+			document.getElementById("Timer").style.backgroundColor = "#FFFFF";
+			document.getElementById("Timer").style.Color = "black";
+		}else{
+			document.getElementById("Timer").style.backgroundColor = "red";
+			document.getElementById("Timer").style.Color = "black";
+		}
+	}
+	function time_1mplus(){
+		now100ms+=6000;
+		if(now100ms>18000){
+			now100ms=18000;
+		}
+	}
+	function time_1splus(){
+		now100ms+=100;
+		if(now100ms>18000){
+			now100ms=18000;
+		}
+	}
+	function time_1mminus(){
+		if(now100ms>6000){
+			now100ms-=6000;
+		}
+	}
+	function time_1sminus(){
+		if(now100ms>100){
+			now100ms-=100;
+		}
+	}
+	</script>
+
+</body>
+
+</html>

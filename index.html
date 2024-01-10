@@ -8,7 +8,7 @@
 	<title>Robo-one timer</title>
 </head>
 
-<body bgcolor="#FFFFF">
+<body bgcolor="#FFFFF0">
 
 	<center>
 	
@@ -67,7 +67,9 @@
 	<audio  autoplay id="audio_2" controls>
 		<source src = "music/alutimet.mp3" type = "audio/mp3">
 	</audio>
-
+	<br>
+	ソースコード
+		<p><a href="https://github.com/dynepanch/roboonetimer">github</a></p>
 	<script>
 	var now100ms=18000;
 	var count=0;
@@ -78,9 +80,47 @@
 	var start=0;
 	var altimet="audio_2";
 	var startmsgs="start";
+	var rightPressed= false;
+	var leftPressed= false;
+	var EnterPressed= false;
+	document.addEventListener("keydown",keyDownHandler,false);
+	document.addEventListener("keyup",keyUpHandler,false);
+	
 	document.getElementById("start").innerHTML = startmsgs;
+	function keyDownHandler(e){
+		if(e.key=="Right" || e.key == "ArrowRight"){
+			rightPressed=true;
+		}else if(e.key=="Left" || e.key == "ArrowLeft"){
+			leftPressed=true;
+		}else if(e.key=="Enter"|| e.key == "NumpadEnter"){
+			EnterPressed=true;
+		}
+	}
+
+	function keyUpHandler(e){
+		if(e.key=="Right" || e.key == "ArrowRight"){
+			rightPressed=false;
+		}else if(e.key=="Left" || e.key == "ArrowLeft"){
+			leftPressed=false;
+		}else if(e.key=="Enter"|| e.key == "NumpadEnter"){
+			EnterPressed=false;
+		}
+	}	
+	var space=0;
 	function showTimer() {
-		changeBoxColor();
+		if(leftPressed==true){
+			time_1splus();
+		}
+		if(rightPressed==true){
+			time_1sminus();
+		}
+		if(EnterPressed==true){
+			space=1;
+		}
+		if(space==1 && EnterPressed==false){
+			start_change();
+			space=0;
+		}
 		if(start==1){
 			count--;
 			now100ms--;
@@ -107,6 +147,7 @@
 		}else{
 			showtime_ms="00";
 		}
+		changeBoxColor();
 		msg = + nowMin + ":" + showtime_sec + ":" + showtime_ms;
 		document.getElementById("Timer").innerHTML = msg;	
 		  
@@ -155,8 +196,9 @@
 		if(now100ms>3000){
 			document.getElementById("Timer").style.backgroundColor = "#FFFFF0";
 			document.getElementById("Timer").style.Color = "black";
+			console.log(now100ms);
 		}else{
-			document.getElementById("Timer").style.backgroundColor = "red";
+			document.getElementById("Timer").style.backgroundColor = "#ff0000";
 			document.getElementById("Timer").style.Color = "black";
 		}
 	}

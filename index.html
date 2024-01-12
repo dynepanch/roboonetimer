@@ -203,25 +203,33 @@
 		}
 	}
 	function time_1mplus(){
-		now100ms+=6000;
+		if(start==0){
+			now100ms+=6000;
+		}
 		if(now100ms>18000){
 			now100ms=18000;
 		}
 	}
 	function time_1splus(){
-		now100ms+=100;
+		if(start==0){
+			now100ms+=100;
+		}
 		if(now100ms>18000){
 			now100ms=18000;
 		}
 	}
 	function time_1mminus(){
-		if(now100ms>6000){
-			now100ms-=6000;
+		if(start==0){	
+			if(now100ms>6000){
+				now100ms-=6000;
+			}
 		}
 	}
 	function time_1sminus(){
-		if(now100ms>100){
-			now100ms-=100;
+		if(start==0){	
+			if(now100ms>100){
+				now100ms-=100;
+			}
 		}
 	}
 	</script>

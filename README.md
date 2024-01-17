@@ -23,3 +23,9 @@ Startボタンを押すとタイマーが始動します。もう一度押すと
 ## 微調整ボタン
 +1m,+1s,-1s,-1sのボタンはそれぞれ1分,1秒単位での調整ができます。物言い等でタイマーを戻すことになった場合はこちらで調整してください。
 <br>
+# LICENCE
+このソフトウェアパッケージは3条項BSDライセンスの元、再配布及び使用が許可されています。
+連絡先:s21C1016HB@s.chibakoudai.jp
+URL:https://github.com/dynepanch/roboonetimer/blob/main/LICENCE
+<br>
+© 2022 Ken Inaba

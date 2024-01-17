@@ -25,7 +25,7 @@ Startボタンを押すとタイマーが始動します。もう一度押すと
 <br>
 # LICENCE
 このソフトウェアパッケージは3条項BSDライセンスの元、再配布及び使用が許可されています。<br>
-連絡先:s21C1016HB@s.chibakoudai.jp
+連絡先:s21C1016HB@s.chibakoudai.jp<br>
 URL:https://github.com/dynepanch/roboonetimer/blob/main/LICENCE
 <br>
 © 2022 Ken Inaba
